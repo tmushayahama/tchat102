@@ -1,0 +1,89 @@
+<div id="ic-body-2">
+ <div class="container ic-container">
+  <ol class="breadcrumb">
+   <li><a href="#">Chats</a></li>
+   <li class="active">Data</li>
+  </ol>
+  <div class="row">
+   <ng-switch on="chatPageWizard" class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ic-padding-none">
+    <div ng-switch-when="chats">
+     <div class="input-group input-group-lg row">
+      <input type="text" class="form-control" placeholder="Search">
+      <span class="input-group-addon btn btn-primary">Search</span>
+     </div>
+     <div ng-repeat="chat in chats" ng-click="selectChat(chat.id)" class="ic-box-3 row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ic-padding-none">
+       <div class="ic-title">
+        {{chat.value.title}}
+       </div>
+       <p class="ic-description">
+        {{chat.value.description}}
+       </p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ic-padding-none">
+
+      </div>
+     </div>
+    </div>
+    <div ng-switch-when="chat">
+     <form class="ic-accept-invitation-form row">
+      <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       <input type="text"
+              ng-model='actionModel.title'
+              class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12"
+              placeholder="Theme ex. ">
+      </div>
+     </form>
+     <div ng-repeat="chatAction in themeAccount.currentActions" class="ic-box-3 row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ic-padding-none">
+       <div class="ic-title">
+        {{chatAction.description}}
+       </div>
+       <div class="ic-footer row">
+        <a>Like</a> ● <a>Like</a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </ng-switch>
+   <div class="col-lg-4 col-md-4"></div>
+  </div>
+
+  <div class="modal" id="ic-add-themechat-modal">
+   <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+       <span aria-hidden="true">&times;</span>
+       <span class="sr-only">close</span>
+      </button>
+      <div class="modal-title text-center">
+       ADD CHAT ACTION
+      </div>
+     </div>
+     <div class="modal-body">
+      <form class="ic-accept-invitation-form row">
+       <div class="ic-heading">
+
+       </div>
+       <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <input type="text"
+               ng-model='actionModel.title'
+               class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12"
+               placeholder="Theme ex. ">
+       </div>
+      </form>
+     </div>
+     <div class="modal-footer">
+      <button type="submit" ng-click="themeAccount.addChatAction()" class="btn btn-primary">
+       Add
+      </button>
+      <button type="button" class="btn btn-defaul" data-dismiss="modal">
+       Cancel
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>

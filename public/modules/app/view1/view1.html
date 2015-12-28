@@ -1,0 +1,285 @@
+<div id="ic-body" >
+ <div class="ic-container-play">
+  <ng-switch on="quickPlayWizardStep" class="ic-wizard-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+   <div class="container ic-gutter-bottom" ng-switch-when="home">
+    <div class="row">
+     <div class="ic-heading-1 col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-0 col-lg-8 col-md-8 col-sm-10 col-xs-12">
+      <div class="ic-title">
+       Start a normal conversation except
+      </div>
+      <div class="ic-description">
+       at random times a theme/subject will appear on the screen and then you have to act it out while continuing your conversation.
+      </div>
+      <div class="ic-extra-description">
+       You will hear a sound when a theme changes.
+      </div>
+     </div>
+    </div>
+    <div class="row ic-play-btn-row">
+     <div class="col-lg-offset-4 col-md-offset-4 col-sm-offset-2 col-xs-offset-1 col-lg-4 col-md-4 col-sm-8 col-xs-10">
+      <a ng-click="start()"
+         class="ic-play-btn btn col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       Start
+      </a>
+     </div>
+    </div>
+    <div class="row text-center">
+     <div  class="col-lg-offset-2 col-md-offset-2 col-sm-offset-1 col-xs-offset-1 col-lg-8 col-md-8 col-sm-10 col-xs-10">
+      <h5>An Example</h5>
+      <br>
+      <div class="embed-responsive embed-responsive-16by9">
+       <iframe class="embed-responsive-item ic-hide"
+               src="../img/thumbnail_1.png"
+               allowfullscreen>
+       </iframe>
+       <div onclick="play();"
+            id="vidwrap"
+            class="embed-responsive-item"
+            style="background: black url('../app/img/thumbnail_1.png') no-repeat center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;overflow:hidden;cursor:pointer;"></div>
+       <script type="text/javascript">function play() {
+           document.getElementById('vidwrap').innerHTML = '<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/zkESoUBVQDs?autoplay=1" frameborder="0"></iframe>';
+          }</script>
+      </div>
+     </div>
+    </div>
+    <br>
+    <br>
+   </div>
+   <div class="container ic-gutter-bottom" ng-switch-when="actions">
+    <div class="row">
+     <div class="col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0 col-lg-4 col-md-5 col-sm-6 col-xs-12">
+      <div data-ng-click="selectAction(1)" class="ic-box-2">
+       <div class="ic-title">
+        RANDOM ACTIONS
+       </div>
+       <div class="ic-description">
+        Using our algorithms, a random theme will appear at a random time.
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+      <div data-ng-click="selectAction(2)" class="ic-box-2">
+       <div class="ic-title">
+        CHOOSE CHAT
+       </div>
+       <div class="ic-description">
+        They are categorized.
+       </div>
+      </div>
+     </div>
+     <div class='col-lg-offset-3 col-md-offset-1 col-sm-offset-0 col-xs-offset-0 col-lg-6 col-md-10 col-sm-12 col-xs-12'>
+      <br>
+      <br>
+      <h3 class="text-center">OR</h3>
+      <br>
+      <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <input type="text"
+               ng-model='improvConv.acceptInvitationData.codename'
+               class="input-lg col-lg-9 col-md-9 col-sm-9 col-xs-8"
+               placeholder="Enter Partner's Code">
+        <a type="submit" ng-click="improvConv.acceptInvitation()"
+           class="btn btn-lg btn-primary col-lg-3 col-md-3 col-sm-3 col-xs-4">
+         Accept
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="container ic-gutter-bottom" ng-switch-when="chats-selection">
+    <div class="row">
+     <div ng-repeat="chat in chats"
+          class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div ng-click="selectChat(chat.id)" class="ic-box-1">
+       <div class="ic-title">
+        {{chat.value.title}}
+       </div>
+       <p class="ic-description">
+        {{chat.value.description}}
+       </p>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="container ic-gutter-bottom" ng-switch-when="start-type">
+    <div class="row">
+     <div class="col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0 col-lg-4 col-md-5 col-sm-6 col-xs-12">
+      <div data-ng-click="selectPlay(1)" class="ic-box-2">
+       <div class="ic-title">
+        QUICK START
+       </div>
+       <div class="ic-description">
+        It appears on one screen
+       </div>
+      </div>
+     </div>
+     <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+      <div data-ng-click="invitePlay(1)" class="ic-box-2">
+       <div class="ic-title">
+        PLAY ANYWHERE
+       </div>
+       <div class="ic-description">
+        It appears on two screens
+       </div>
+      </div>
+     </div>
+     <div class="ic-disabled col-lg-offset-2 col-md-offset-1 col-sm-offset-0 col-xs-offset-0 col-lg-8 col-md-10 col-sm-12 col-xs-12">
+      <div data-ng-click="selectPlay(3)" class="ic-box-2">
+       <div class="ic-title">
+        INVITE A PLAYER
+       </div>
+       <div class="ic-description">
+        Coming Soon
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div ng-switch-when="invite">
+    <ul class="list-group">
+     <li class="list-group-item">
+      <a class="btn btn-link" ng-click="waitPlay()">
+       {{"name: " + code.Name}}
+      </a>
+      <a class="btn btn-xs btn-primary pull-right"  ng-click="requestChat(user)">
+       Request
+      </a>
+     </li>
+     <li ng-repeat="user in users" class="list-group-item">
+      <a class="btn btn-link" ng-click="selectUser(user)">
+       {{user.firstname + " " + user.lastname}}
+      </a>
+      <a class="btn btn-xs btn-primary pull-right"
+         ng-click="requestChat(user)">
+       Request
+      </a>
+     </li>
+    </ul>
+   </div>
+   <div ng-switch-when="invite-wait" class="">
+    <div class="ic-display-table">
+     <div class="ic-display-cell-2">
+      <div class="ic-title">
+       WAITING FOR PLAYER ...
+      </div>
+      <div class="ic-description">
+       Give this code to a partner<br>
+      </div>
+      <div class="ic-code">
+       {{improvConv.inviteChat.codename}}
+      </div>
+     </div>
+    </div>
+   </div>
+   <div ng-switch-when="play" class="ic-display-table ic-dim-3">
+    <div class="ic-display-cell">
+     {{improvConv.currentAct.description}}
+    </div>
+
+   </div>
+  </ng-switch>
+ </div>
+</div>
+<div ng-show="quickPlayWizardStep !== 'home'" id="ic-footer" class="row">
+ <div  class="btn-group col-lg-offset-5 col-md-offset-5 col-sm-offset-4 col-xs-offset-2 col-lg-2 col-md-2 col-sm-4 col-xs-8">
+  <a href="../app"
+     class="btn btn-danger btn-lg col-lg-12 col-md-12 col-sm-12 col-xs-12">
+   Cancel
+  </a>
+ </div>
+</div>
+
+
+<div class="modal" id="partner-code-modal">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">
+     <span aria-hidden="true">&times;</span>
+     <span class="sr-only">close</span>
+    </button>
+    <div ng-show="improvConv.acceptInvitationData.error.length > 0"  class="alert alert-warning">
+     {{improvConv.acceptInvitationData.error}}
+    </div>
+    <div class="modal-title text-center">
+     ENTER PARTNER'S CODE
+    </div>
+   </div>
+   <div class="modal-body">
+    <form class="ic-accept-invitation-form row">
+     <div class="ic-heading">
+
+     </div>
+     <div class="row">
+
+     </div>
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="submit" ng-click="improvConv.acceptInvitation()" class="btn btn-primary">
+     Accept
+    </button>
+    <button type="button" class="btn btn-defaul" data-dismiss="modal">
+     Cancel
+    </button>
+   </div>
+  </div>
+ </div>
+</div>
+<audio controls id="ic-sound" class="ic-hide">
+ <source src="sound/sound1.wav" type="audio/wav">
+</audio>
+
+<div class="modal ic-modal-lg" id="open-chat">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">
+     <span aria-hidden="true">&times;</span>
+     <span class="sr-only">close</span>
+    </button>
+    <div class="modal-title text-center">
+     Request Chat Play {{selectedChat.title}}
+    </div>
+   </div>
+   <div class="modal-body">
+    <ng-switch on="wizardStep" class="ic-wizard-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+     <div ng-switch-when="0">
+      <div ng-repeat="chat in chats"
+           class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+       <div ng-click="selectChat($index)" class="ic-box-1">
+        <div class="ic-title">
+         {{chat.title}}
+        </div>
+        <p class="ic-description">
+         {{chat.description}}
+        </p>
+       </div>
+      </div>
+     </div>
+     <div ng-switch-when="1">
+      <div class="row ic-selected-heading">
+       <h4>{{selectedChat.title}}</h4>
+      </div>
+     </div>
+    </ng-switch>
+   </div>
+  </div>
+  <div class="modal-footer">
+   <div class="btn-group col-lg-offset-5 col-lg-2">
+    <button type="button"
+            data-ng-click="improvConv.restartChat()"
+            class="btn btn-default col-lg-6">
+     Restart
+    </button>
+    <button type="button"
+            class="btn btn-danger col-lg-6"
+            data-ng-click="improvConv.endChat()"
+            data-dismiss="modal">
+     End
+    </button>
+   </div>
+  </div>
+ </div>
+</div>

@@ -1,0 +1,80 @@
+id	action	action_type	privacy	status
+1	A Bit Drunk	1	1	1
+2	Act Surprised	1	1	1
+3	Act Suspicious	1	1	1
+4	Annoying Mathmatician	1	1	1
+5	Annoyingly Philosophical	1	1	1
+6	Are You Mad	1	1	1
+7	Be Calm	1	1	1
+8	Be Nosy	1	1	1
+9	Be Overly Kind	1	1	1
+10	Be Overly Polite	1	1	1
+11	Confuse A Pilot With A Driver	1	1	1
+12	Confuse Cute Dog With Cute Cat	1	1	1
+13	Confuse Valentine's With New Year's	1	1	1
+14	Did You Get My Message	1	1	1
+15	Did You Hear About Jane	1	1	1
+16	Dinner Is Ready	1	1	1
+17	Don't Answer Questions Directly	1	1	1
+18	Explain Your Skills	1	1	1
+19	Feeling Sleepy	1	1	1
+20	Forget Each Others Names	1	1	1
+21	Get The Door	1	1	1
+22	How was Australia	1	1	1
+23	I Don't Get It	1	1	1
+24	I Have A Headache	1	1	1
+25	I Shred All Documents	1	1	1
+26	I Will Email You That Later	1	1	1
+27	Be Less Confidence 	1	1	1
+28	Like My Facebook Photo	1	1	1
+29	Smell Bacon	1	1	1
+30	Start Being Shallow	1	1	1
+31	Think I Am Disorganised	1	1	1
+32	Today Is My Birthday	1	1	1
+33	Trust Too Much	1	1	1
+34	Uncle John Is Coming Tomorrow	1	1	1
+35	What Are You Cooking	1	1	1
+36	You don't know what a plane is	1	1	1
+37	You Forgot To Get The Eggs	1	1	1
+38	I Just Met You	1	1	1
+39	You Remember Uncle John	1	1	1
+40	What is Linkedin	1	1	1
+41	I Threw It Away	1	1	1
+42	Which Company Is This	1	1	1
+43	I Replaced The Chairs	1	1	1
+44	I Am Cooking Today	1	1	1
+45	I Cried Watching The Notebook	1	1	1
+46	Are You Crying	1	1	1
+47	That Is Dangerous	1	1	1
+48	Awkward Eye Contact	1	1	1
+49	Be Overly Curious	1	1	1
+50	Don't Talk Like That	1	1	1
+51	Is That Legal	1	1	1
+52	You Are Gonna Love The Pictures	1	1	1
+53	Can I Borrow $100	1	1	1
+54	"Oh No, Battery Low"	1	1	1
+55	"I Can't, I Am On Diet"	1	1	1
+56	Act Jealous	1	1	1
+57	I Will Just Get A Salad	1	1	1
+58	I Am Not Trying To Be Rude	1	1	1
+59	"Congratulations, I Am Happy For You."	1	1	1
+60	This Is A Sign	1	1	1
+61	Sorry I Can't Make It	1	1	1
+62	Sorry About That	1	1	1
+63	That Is Embarrassing	1	1	1
+64	That Concert Was Epic	1	1	1
+65	$100 Per Hour	1	1	1
+66	What Is Your Password	1	1	1
+67	"Shhh, Did You Here That"	1	1	1
+68	"Off Course, I Am Qualified"	1	1	1
+69	I Have 3 Years Of Experience	1	1	1
+70	Don't Say That	1	1	1
+71	They Got Engaged	1	1	1
+72	Give Random Life Advice	1	1	1
+73	I Was So Disappointed	1	1	1
+74	Are you concerned	1	1	1
+75	Unplug your device	1	1	1
+76	Fake Polite	1	1	1
+77	Fake Laughter	1	1	1
+78	Be Super Defensive	1	1	1
+79	You are too close	1	1	1
