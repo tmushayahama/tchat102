@@ -81,6 +81,8 @@ CREATE TABLE `tc_chat` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',  
   `type_id` int(11),
+  `icon_id` int(11) NOT NULL DEFAULT '1',
+  `level_id` int(11) NOT NULL,
   `chat_youtube_url` varchar(1000),
   `title` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL DEFAULT "",
@@ -88,8 +90,12 @@ CREATE TABLE `tc_chat` (
   `order` int(11) NOT NULL DEFAULT '1',
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
+  KEY `chat_icon_id` (`icon_id`),
   KEY `chat_creator_id` (`creator_id`),
-  CONSTRAINT `chat_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `tc_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `chat_level_id` (`level_id`),
+  CONSTRAINT `chat_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `tc_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_icon_id` FOREIGN KEY (`icon_id`) REFERENCES `tc_icon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_level_id` FOREIGN KEY (`level_id`) REFERENCES `tc_level` (`id`) ON DELETE CASCADE ON UPDATE CASCADE 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -101,8 +107,10 @@ DROP TABLE IF EXISTS `tc_chat_action`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tc_chat_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
   `chat_id` int(11) NOT NULL,
   `action_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL,
   `action_order` int(11) NOT NULL DEFAULT '1',
   `action_period` int(11) NOT NULL DEFAULT '25',
   `description` varchar(500) NOT NULL DEFAULT "",
@@ -114,8 +122,13 @@ CREATE TABLE `tc_chat_action` (
   PRIMARY KEY (`id`),
   KEY `chat_action_chat_id` (`chat_id`),
   KEY `chat_action_action_id` (`action_id`),
+  KEY `chat_action_creator_id` (`creator_id`),
+  KEY `chat_action_level_id` (`level_id`),
   CONSTRAINT `chat_action_chat_id` FOREIGN KEY (`chat_id`) REFERENCES `tc_chat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `chat_action_action_id` FOREIGN KEY (`action_id`) REFERENCES `tc_action` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `chat_action_action_id` FOREIGN KEY (`action_id`) REFERENCES `tc_action` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_action_level_id` FOREIGN KEY (`level_id`) REFERENCES `tc_level` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `chat_action_creator_id` FOREIGN KEY (`creator_id`) REFERENCES `tc_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -159,6 +172,35 @@ CREATE TABLE `tc_chat_invite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `tc_icon`
+--
+DROP TABLE IF EXISTS `tc_icon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tc_icon` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(1000) NOT NULL DEFAULT "",
+  `type` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `tc_level`
+--
+DROP TABLE IF EXISTS `tc_level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tc_level` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(50) NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(150),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Table structure for table `tc_user`
 --
 DROP TABLE IF EXISTS `tc_user`;
@@ -178,7 +220,7 @@ CREATE TABLE `tc_user` (
   `experience` varchar(1000) NOT NULL DEFAULT '',
   `interests` varchar(1000) NOT NULL DEFAULT '',
   `favorite_quote` varchar(1000) NOT NULL DEFAULT '',
-  `avatar_url` varchar(200) NOT NULL DEFAULT 'gb_default_avatar.png',
+  `avatar_url` varchar(200) NOT NULL DEFAULT 'tc_default_avatar.png',
   `gender` varchar(3) DEFAULT NULL,
   `birthdate` date DEFAULT NULL,
   `phone_number` varchar(20) NOT NULL DEFAULT '',
@@ -186,10 +228,28 @@ CREATE TABLE `tc_user` (
   `superuser` int(1) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `gb_user_email` (`email`)
+  UNIQUE KEY `tc_user_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------- ICON ---------------
+load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/icon.txt'
+    into table tchat102.tc_icon
+    fields terminated by '\t'
+    enclosed by '"'
+    escaped by '\\'
+    lines terminated by '\r\n'
+    ignore 1 LINES
+    (`id`, `name`, `description`, `type`);
 
+-- ----------- Level ---------------
+load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/Level.txt'
+    into table tchat102.tc_level
+    fields terminated by '\t'
+    enclosed by '"'
+    escaped by '\\'
+    lines terminated by '\r\n'
+    ignore 1 LINES
+    (`id`, `category`, `code`, `name`, `description`);
 
 -- ------------------Initial Users ------------------
 load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/User.txt'
@@ -220,7 +280,7 @@ load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/Chat
     escaped by '\\'
     lines terminated by '\r\n'
     ignore 1 LINES
-   (`id`,	`creator_id`,	`created_at`,	`type_id`,	`chat_youtube_url`,	`title`,	`description`,	`privacy`, `order`,	`status`);
+   (`id`,	`creator_id`,	`created_at`,	`type_id`,	`icon_id`, `level_id`, `chat_youtube_url`,	`title`,	`description`,	`privacy`, `order`,	`status`);
 
 -- ------------------ Action ----------------
 load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/ChatAction.txt'
@@ -230,4 +290,4 @@ load data local infile 'C:/xampp/htdocs/tchat102/database/data/Initializers/Chat
     escaped by '\\'
     lines terminated by '\r\n'
     ignore 1 LINES
-  (`id`,	`chat_id`,	`action_id`,	`action_order`,	`action_period`,	`description`,	`privacy`, `order`,	`status`);
+  (`id`,	`chat_id`,	`action_id`, `level_id`,	`action_order`,	`action_period`,	`description`,	`privacy`, `order`,	`status`);
